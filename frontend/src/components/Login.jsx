@@ -17,12 +17,16 @@ function Login() {
         headers: { Authorization: "Bearer " + access_token },
       }
     );
-    localStorage.setItem("user", JSON.stringify(userInfo?.data));
 
     const { names, photos, metadata } = userInfo.data;
+
     const userId = metadata.sources[0].id;
     const username = names[0].displayName;
     const photo = photos[0].url;
+
+    const userData = { userId, username, photo };
+
+    localStorage.setItem("user", JSON.stringify(userData));
 
     const doc = {
       _id: userId,
