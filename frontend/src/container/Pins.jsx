@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar, Feed, PinDetail, CreatePin, Search } from "../components";
+import Notfound from "./Notfound";
 
 function Pins({ user }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,6 +30,7 @@ function Pins({ user }) {
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             }
           />
+          <Route path="*" element={<Notfound />} />
         </Routes>
       </div>
     </div>

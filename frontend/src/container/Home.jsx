@@ -8,6 +8,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { userQuery } from "../utils/data";
 import Pins from "./Pins";
 import { fetchUser } from "../utils/fetchUser";
+import Notfound from "./Notfound";
 
 function Home() {
   const [toggleSidebar, setToggleSidebar] = useState(false);

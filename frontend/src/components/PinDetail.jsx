@@ -65,6 +65,8 @@ const PinDetail = ({ user }) => {
     return <Spinner message="Loading pin..." />;
   }
 
+  console.log(typeof pinDetail.destination);
+
   return (
     <>
       <div
@@ -90,7 +92,15 @@ const PinDetail = ({ user }) => {
                 <MdDownloadForOffline />
               </a>
             </div>
-            <a href={pinDetail.destination} target="_blank" rel="noreferrer">
+            <a
+              href={
+                pinDetail.destination.includes("http")
+                  ? pinDetail.destination
+                  : `https://${pinDetail.destination}`
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
               {pinDetail.destination}
             </a>
           </div>
@@ -157,15 +167,13 @@ const PinDetail = ({ user }) => {
           </div>
         </div>
       </div>
-      {pins?.length > 0 ? (
+      {pins?.length > 0 && (
         <>
           <h2 className="text-center font-bold text-2xl mt-8 mb-4">
             More like this
           </h2>
           <MasonryLayout pins={pins} />
         </>
-      ) : (
-        <Spinner message="Loading more pins..." />
       )}
     </>
   );
