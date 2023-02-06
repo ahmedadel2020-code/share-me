@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { urlFor, client } from "../client";
 import { MdDownloadForOffline } from "react-icons/md";
@@ -12,6 +12,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   const navigate = useNavigate();
   const user = fetchUser();
+  const { userId } = useParams();
 
   const alreadySaved = !!save?.filter(
     (item) => item?.postedBy?._id === user?.userId
@@ -129,7 +130,12 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         )}
       </div>
       <Link
-        to={`user-profile/${postedBy?._id}`}
+        to={
+          userId
+            ? `../user-profile/${postedBy?._id}`
+            : `user-profile/${postedBy?._id}`
+        }
+        replace
         className="flex gap-2 mt-2 items-center"
       >
         <img

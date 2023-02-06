@@ -20,7 +20,6 @@ const Feed = () => {
         setLoading(false);
       });
     } else {
-      console.log("fetch all pins");
       client.fetch(feedQuery).then((data) => {
         setPins(data);
         setLoading(false);
